@@ -19,13 +19,27 @@
 		Czarne chorągwie na śmierć prowadzą zastępy.<br>
 		Przeciw nim sterczy biała, wąska, zaostrzona,<br>
 		Jak głaz bodzący morze, reduta Ordona.</p>
-		
-		<textarea rows="15" cols="50"></textarea><br>
-		
+
+		<textarea rows="15" cols="50" oninput=timestamp(this)></textarea><br>
+		<div id="sumUp" />
 		<script>
-			// a JavaScript code here ...
-			
+		function timestamp(input){
+						let words = 0;
+						let chars = 0;
+
+						setTimeout(function(){
+							words = input.value.trim().split(" ");
+							chars = input.value.length;
+							input.disabled = "true";
+							let toDiv = document.getElementById("sumUp");
+							toDiv.innerText =" Your number of words: " + words.length +
+							 "\nYour number of chars: " + chars;
+
+						}, 30000)
+
+					}
+
 		</script>
-		
+
 	</body>
 </html>
