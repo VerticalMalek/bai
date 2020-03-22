@@ -5,9 +5,39 @@
 		<meta charset="UTF-8">
 	</head>
 	<body>
+		<div align="center" id="myTable" />
 		<script>
-			// a JavaScript code here ...
-			
+		function addTable() {
+
+			var counter = 1;
+
+		  var tabDiv = document.getElementById("myTable");
+		  var tab = document.createElement('table');
+
+		  tab.style.border = '1px solid';
+
+		  var tabBody = document.createElement('tbody');
+		  tab.appendChild(tabBody);
+
+
+		  for (var i = 0; i < 2; i ++) {
+		    var tr = document.createElement('tr');
+				tabBody.appendChild(tr);
+
+		    for (var j = 0; j < 2; j ++) {
+		      var td = document.createElement('td');
+					td.innerText = counter;
+					td.style.border = "1px solid";
+					td.style.width = "60px";
+					td.style.textAlign = "center";
+		      tr.appendChild(td);
+
+					counter ++;
+		    }
+		  }
+		  tabDiv.appendChild(tab);
+		}
+		addTable();
 		</script>
 	</body>
 </html>
