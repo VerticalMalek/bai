@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <input type="button" value="click to display people" onclick="connect()">
+    <ol>
+    </ol>
+    <script>
+      function connect(){
+
+  						var req = new XMLHttpRequest();
+  						req.onreadystatechange = function(){display(this);};
+  						req.open("GET", "https://gist.githubusercontent.com/VerticalMalek/fcacb98691e86c5f47f2d14f600a4dd8/raw/3b5ac2dbee0d8b5d97a015006fa2cacb48c6ae32/people.json", true);
+  						req.send();
+
+  					};
+            function display(r){
+              if (r.readyState == 4 && r.status == 200) {
+                var object = JSON.parse(r.responseText);
+
+              /*  console.log("Request state:", r.readyState);
+                console.log("Status:", r.status);
+                console.log("Status text:", r.statusText);
+                console.log("-----");
+                console.log(object);
+                */
+                  for(i=0; i < object.length; i++){
+                    const list = document.createElement('li');
+                    const box = document.getElementsByTagName('ol').innerText = object[i].name + " " + object[i].surname.toUpperCase() + ", " + object[i].country;
+                    list.appendChild(document.createTextNode(box));
+                    document.getElementsByTagName('ol')[0].appendChild(list);
+                  }
+
+                }
+              };
+
+    </script>
+  </body>
+</html>
