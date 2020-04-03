@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <input type="button" value="click to display currencies!" onclick="connect()">
+		<p id="currenciesData"></p>
+    <script>
+      function connect(){
+
+  						var req = new XMLHttpRequest();
+  						req.onreadystatechange = function(){display(this);};
+  						req.open("GET", "http://api.nbp.pl/api/exchangerates/tables/A/today/?format=json", true);
+  						req.send();
+
+  					};
+            function display(r){
+
+              if (r.readyState == 4 && r.status == 200) {
+                const [{ rates }] = JSON.parse(r.response);
+                var object = JSON.parse(r.responseText);
+                var dollar = rates.code=='USD';
+                console.log(dollar);
+  							document.getElementById("currenciesData").innerText = `USD: ${object[0].rates[1].currency} ${object[0].rates[1].mid}`;
+                document.getElementById("currenciesData").innerText = `USD: ${object[0].rates[1].currency} ${object[0].rates[1].mid}`;
+
+              }
+              else {
+                console.log("No nie dziala " + "kod: " + r.status);
+              }
+            };
+    </script>
+  </body>
+</html>
