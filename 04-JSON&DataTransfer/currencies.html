@@ -20,17 +20,26 @@
 
               if (r.readyState == 4 && r.status == 200) {
                 const [{ rates }] = JSON.parse(r.response);
-                var object = JSON.parse(r.responseText);
-                var dollar = rates.code=='USD';
-                console.log(dollar);
-  							document.getElementById("currenciesData").innerText = `USD: ${object[0].rates[1].currency} ${object[0].rates[1].mid}`;
-                document.getElementById("currenciesData").innerText = `USD: ${object[0].rates[1].currency} ${object[0].rates[1].mid}`;
+                for (i=0; i < rates.length; i++){
+                  if (rates[i].code == "USD") {
+                    var dol = rates[i].mid;
+                    //console.log(dol);
+                }
+                  else if (rates[i].code == "EUR") {
+                    var eur = rates[i].mid;
+                    //console.log(eur);
+              }
 
-              }
-              else {
-                console.log("No nie dziala " + "kod: " + r.status);
-              }
+                else if (rates[i].code == "GBP") {
+                  var gbp = rates[i].mid;
+                  //console.log(gbp);
+            }
+          }
+          document.getElementById("currenciesData").innerText = "Kurs Dolara: " + dol + "\n Kurs Euro: "+ eur + "\n Kurs GBP: " + gbp;
+        };
+
             };
+
     </script>
   </body>
 </html>
