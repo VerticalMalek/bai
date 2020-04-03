@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css"/>
+    <title></title>
+  </head>
+  <body>
+    <table id="table_id" class="display">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Age</th>
+            <th>Country</th>
+            <th>E-mail's</th>
+        </tr>
+    </thead>
+</table>
+<script>
+  $(document).ready(function () {
+                $('#table_id').DataTable( {
+
+                    'ajax':{
+                        'url': 'https://gist.githubusercontent.com/VerticalMalek/fcacb98691e86c5f47f2d14f600a4dd8/raw/3b5ac2dbee0d8b5d97a015006fa2cacb48c6ae32/people.json',
+                        'dataSrc': ''},
+
+                    "columns": [
+                       {"data": "name"},
+                       {"data": "surname"},
+                       {"data": "age"},
+                       {"data": "country"},
+                       {"data": "email"}
+                    ]
+                })
+            });
+</script>
+  </body>
+</html>
