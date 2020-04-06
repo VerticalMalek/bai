@@ -1,11 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
 </head>
 <body>
+  <div id="app">
+    <canvas id="Chart"></canvas>
+  </div>
+
   <script>
-    var app = new Vue({
+    var char = new Vue({
       el: '#app',
       data: {
         films: [
@@ -29,9 +34,33 @@
             language: 'Php',
             popularity: 7.37
           }
-        ] 
-      }
-    });
+        ]
+      },
+        computed: {
+          getlanguageInfo: function() {
+            return this.films.map(film => film.language);
+          },
+          getPopularityInfo: function() {
+            return this.films.map(film => film.popularity);
+          }
+        }
+      });
+
+      var ctx = document.getElementById('Chart').getContext('2d');
+
+      new Chart(ctx, {
+        type: 'horizontalBar',
+        data: {
+          labels: char.getlanguageInfo,
+          datasets: [{
+            label: 'popularity line',
+            borderColor: 'white',
+            data: char.getPopularityInfo,
+            backgroundColor: ["yellow", "aqua", "blue", "orange", "purple"]
+          }],
+        },
+      });
+
   </script>
 </body>
 </html>
