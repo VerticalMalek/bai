@@ -1,9 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <style>
+  div {
+    border: 1px solid;
+    max-width: 300px;
+    margin: auto;
+    padding: 25px;
+  }
+  </style>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 <body>
+  <div align="center" id="app">
+  <b> {{ toUpper() }} </b><br>
+      {{ address }}<br>
+  {{ postcode }} {{ city }}<br>
+  tel. {{landline}}, {{mobile}}
+  <a href="http://www.unikpol.pl"> {{web}} </a>
+  </div>
   <script>
     var app = new Vue({
       el: '#app',
@@ -15,7 +30,14 @@
         landline: '22 345 90 21',
         mobile: '888 213 992',
         web: 'http://www.unikpol.pl'
+      },
+      methods: {
+        toUpper: function() {
+          return this.company.toUpperCase();
+        }
       }
+
+
     });
   </script>
 

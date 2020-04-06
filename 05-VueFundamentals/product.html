@@ -4,7 +4,20 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 <body>
-  <h1>Grades</h1>    
+<b>RECEIPT</b><br>
+  <div id="app">
+    ---------------------------- <br>
+    Product: {{ product.name }} <br>
+    Unit Price: {{ product.unitPrice }} zł <br>
+    Quantity: {{ product.quantity }} <br>
+    Amount: {{ fullPrice() }} zł <br>
+    VAT Tax Rate: {{ product.VAT }} %<br>
+    =================<br>
+    <b>Total: {{ withTax() }} zł</b>
+
+
+
+  </div>
 
   <script>
     var app = new Vue({
@@ -16,6 +29,16 @@
           quantity: 3,
           VAT: 23
         }
+      },
+      methods: {
+        fullPrice: function(){
+          return Math.floor(this.product.unitPrice) * this.product.quantity;
+        },
+        withTax: function() {
+          return (Math.floor(this.product.unitPrice) * this.product.quantity*(this.product.VAT)/100 + Math.floor(this.product.unitPrice) * this.product.quantity).toFixed(2);
+
+        }
+
       }
     });
   </script>

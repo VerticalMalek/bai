@@ -6,7 +6,7 @@
 <body>
 <div id="app">
 <ol>
-<li v-for="thing in todo"> {{ thing }}</li>
+<li v-for="thing in todo">{{thing}} {{ alphabeticalOrder }}</li>
 </ol>
 </div>
   <script>
@@ -17,7 +17,13 @@
           'Purchase two tickets to cinema',
           'Feed cat',
           'Pay cable bill',
-          'Go shopping' ]
+          'Go shopping'
+          ]
+      },
+      computed: {
+        alphabeticalOrder: function(){
+          this.todo.sort();
+        }
       }
     });
   </script>
