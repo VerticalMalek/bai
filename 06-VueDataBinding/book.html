@@ -6,19 +6,25 @@
 <body>
   <div id="app">
     <span>Your name:</span>
+    <input type="text" v-model="title">
     <input type="text" v-model="name">
-    <button v-on:click="myName()">Pokaż imie</button>
+    <input type="text" v-model="surname">
+    <button v-on:click="myName()">Zapisz i wyświetl</button>
 
   </div>
   <script>
     var app = new Vue({
       el: '#app',
       data: {
-        name: ''
+        title:'title',
+        name: 'name of writer',
+        surname:'surname of writer'
       },
       methods: {
         myName: function() {
+          console.log(this.title);
           console.log(this.name);
+          console.log(this.surname);
         }
       }
 
