@@ -11,9 +11,7 @@
     <button type="button" @click="add()">Add</button>
     <h3>To Do List</h3>
     <ol>
-      <li>...</li>
-      <li>...</li>
-      <li>...</li>
+    <li v-for="item in todos" @dblclick="poping">{{item}}<li>
     </ol>
   </div>
   <script>
@@ -26,7 +24,11 @@
       methods: {
         add: function() {
           this.todos.push(this.todo);
+        },
+        poping: function(){
+          this.todos.pop()
         }
+
       }
     });
   </script>
