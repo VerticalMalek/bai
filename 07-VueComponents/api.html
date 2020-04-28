@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<style>
+  table
+  {
+    border: 1px solid black;
+    border-collapse: collapse;
+    text-align: left;
+    margin: auto;
+    width:800px;
+  }
+  th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    text-align: center;
+    padding: 2px;
+  };
+</style>
+<body>
+    <h2 style="text-align: center">Rates to PLN</h2>
+    <div id="currency">
+       <currency></currency>
+   </div>
+  <script>
+    Vue.component('currency', {
+     template:
+     '<div><table><thead><tr><th><b>Currency</b></th><th><b>Code</b></th><th><b>Mid</b></th></tr></thead><tbody><tr v-for="currency in values"><td><b>{{currency.currency}}</b></td><td>{{currency.code}}</td><td>{{currency.mid.toFixed(4)}} zł</td></tr></tbody></table></div>',
+     data(){
+            return{
+                values: [],
+            }
+        },
+        mounted(){
+            this.calcRates()
+        },
+        methods: {
+          calcRates: function () {
+            var temp = [];
+              let req = new XMLHttpRequest()
+              req.open('GET', 'http://api.nbp.pl/api/exchangerates/tables/a', true)
+              req.onreadystatechange = () => {
+                  if (req.readyState === 4 && req.status === 200)
+                  {
+                    this.values = JSON.parse(req.responseText)[0].rates;
+                  }
+              }
+              req.send();
+              this.values = temp;
+          },
+  }
+});
+  new Vue({
+      el: '#currency',
+  });
+  </script>
+</body>
+</html>
