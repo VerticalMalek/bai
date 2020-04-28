@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+      <datafirst></datafirst>
+      <datasecond></datasecond>
+      <datathird></datathird>
+</div>
+  <script>
+
+      Vue.component('datafirst', {
+          template: '<div><h1>The Lord of the Rings: The Fellowship of the Ring, Peter Jacson, 2001<h1></div>'
+      }),
+      Vue.component('datasecond', {
+          template: '<div><h1>The Lord of the Rings: The Two Towers, Peter Jacson, 2002<h1></div>'
+      }),
+      Vue.component('datathird', {
+          template: '<div><h1>The Lord of the Rings: The Return of the King, Peter Jacson, 2003<h1></div>'
+      });
+
+      new Vue({
+        el: '#app'
+      });
+
+  </script>
+
+</body>
+
+</html>

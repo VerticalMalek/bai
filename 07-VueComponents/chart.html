@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
+</head>
+<body>
+    <h2 style="text-align:center">Languages</h2>
+    <div id="app">
+        <chart :data="popularity" :labels="languages"></chart>
+    </div>
+    <script>
+    Vue.component('chart', {
+      template:
+      `<div><canvas id="Chart"></canvas></div>`,
+      props: {
+          data: {type: Array},
+          labels: {type: Array}
+            },
+        mounted() {
+          var ctx = document.getElementById('Chart').getContext('2d');
+          var chart = new Chart(ctx, {
+            type: 'horizontalBar',
+              data: {
+                  labels: this.labels,
+                  datasets: [{
+                    label: 'popularity line',
+                    borderColor: 'white',
+                    backgroundColor: ["yellow", "aqua", "blue", "orange", "purple"],
+                    data: this.data }]
+                    }
+      });
+    }
+});
+    new Vue({
+        el: '#app',
+        data: {
+            languages: ['Python', 'Java', 'JavaScript', 'C#', 'Php'],
+            popularity: [25.95, 21.42, 8.26, 7.62, 7.37]
+             }
+      });
+    </script>
+</body>
+</html>

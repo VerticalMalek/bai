@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <h2>Binaries</h2>
+  <div id="app">
+    <bin v-bind:value="8"></bin>
+    <bin v-bind:value="170"></bin>
+    <bin v-bind:value="204"></bin>
+    <bin v-bind:value="3855"></bin>
+  </div>
+  <script>
+      Vue.component('bin', {
+        props: ["value"],
+        template: `<div>{{value}} in decimal is {{binary()}} in binary </div>`,
+        methods: {
+          binary: function(){
+              return this.value.toString(2)
+          }
+        }
+      });
+
+        new Vue({
+          el: '#app'
+        });
+
+  </script>
+</body>
+
+</html>
